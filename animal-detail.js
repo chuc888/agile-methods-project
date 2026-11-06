@@ -319,6 +319,29 @@ function renderAnimalProfile(animal, container) {
     threats.appendChild(threatList);
     article.appendChild(threats);
 
+    // Ecological role and practical actions for residents of Pittsburgh.
+    if (animal.ecologicalImportance) {
+        const ecology = createSection(animal.id, "ecology", "Ecological Importance");
+        ecology.appendChild(createCitedParagraph(animal.ecologicalImportance, null, citationTools));
+        article.appendChild(ecology);
+    }
+
+    if (animal.protectionActions && animal.protectionActions.length) {
+        const protection = createSection(animal.id, "protection", "Methods to Help Protect");
+        protection.appendChild(createTextElement(
+            "p", "protection-intro",
+            "Actions for residents of Pittsburgh, Pennsylvania"
+        ));
+        const actionList = createTextElement("ul", "protection-list");
+        animal.protectionActions.forEach(function (action) {
+            const item = createTextElement("li", null, action.text);
+            item.appendChild(createCitations(action.sources, citationTools.numbers, citationTools.lookup));
+            actionList.appendChild(item);
+        });
+        protection.appendChild(actionList);
+        article.appendChild(protection);
+    }
+
     // Population (optional, always dated)
     if (animal.population) {
         const population = createSection(animal.id, "population", "Population Estimate");

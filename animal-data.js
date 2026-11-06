@@ -19,6 +19,8 @@
      Every photo needs credit, license,
      licenseUrl, and sourceUrl. Check each
      Wikimedia Commons file's own license.
+   - ecologicalImportance: cited explanation of the species’ ecological role.
+   - protectionActions: cited actions accessible to Pittsburgh residents.
    - sources: each fact lists the ids of
      the sources that support it.
 ================================== */
@@ -60,6 +62,20 @@ const ANIMALS = [
             { text: "Disease, such as canine distemper virus", sources: ["wcs-amur-leopard"] },
             { text: "Inbreeding depression in a very small population", sources: ["wcs-amur-leopard"] }
         ],
+        ecologicalImportance: {
+            text: "Amur leopards are forest predators that feed on roe deer, sika deer, and wild boar. This predator–prey relationship is part of the forest food web. Protecting leopards also requires protecting their prey and the connected forests they share with other wildlife.",
+            sources: ["wcs-amur-leopard"]
+        },
+        protectionActions: [
+            {
+                text: "From Pittsburgh, donate online or organize a small school or neighborhood fundraiser for WCS. Its Amur leopard work includes removing snares that threaten prey and working with communities in the species’ range. General donations support WCS’s wider conservation work; check with WCS before describing a gift as earmarked for leopards.",
+                sources: ["wcs-amur-leopard", "wcs-support"]
+            },
+            {
+                text: "Create a short, source-linked presentation for a Pittsburgh classroom, campus club, or community group about Amur leopards and their prey. Share WCS’s conservation work and online support options so participants can help from home rather than needing to travel to leopard habitat.",
+                sources: ["wcs-amur-leopard", "wcs-support"]
+            }
+        ],
         population: {
             text: "About 84 adults and subadults were estimated in 2014–2015 (published 2018). Surveys on both sides of the border suggest numbers are rising, but no newer total has been verified for this site.",
             asOf: "2014–2015",
@@ -79,6 +95,13 @@ const ANIMALS = [
                 publisher: "IUCN Red List of Threatened Species",
                 url: "https://www.iucnredlist.org/search?query=Panthera%20pardus%20orientalis",
                 accessed: "2026-11-02"
+            },
+            {
+                id: "wcs-support",
+                title: "Wildlife Conservation Society — Ways to Support",
+                publisher: "Wildlife Conservation Society",
+                url: "https://www.wcs.org/",
+                accessed: "2026-11-06"
             }
         ]
     },
@@ -121,6 +144,24 @@ const ANIMALS = [
             { text: "Predation of eggs and hatchlings, including by introduced dogs, cats, and pigs", sources: ["noaa-hawksbill"] },
             { text: "Vessel strikes and marine debris", sources: ["noaa-hawksbill"] }
         ],
+        ecologicalImportance: {
+            text: "Hawksbills play an important role in marine ecosystems as sponge-eating sea turtles. Their narrow beaks let them feed in reef cracks and crevices, linking sponges and other reef organisms to the reef food web. Protecting their feeding habitat also protects the coral reef communities they depend on.",
+            sources: ["noaa-hawksbill", "fws-hawksbill"]
+        },
+        protectionActions: [
+            {
+                text: "When shopping in Pittsburgh stores or online, refuse real tortoiseshell jewelry, combs, and ornaments. Ask what a product is made from and choose a clearly identified non-wildlife alternative if the material is uncertain; illegal hawksbill shell trade remains a threat.",
+                sources: ["noaa-hawksbill", "fws-hawksbill"]
+            },
+            {
+                text: "Carry reusable bags and bottles in Pittsburgh, secure trash, and avoid balloon releases. Join an Allegheny CleanWays land or river cleanup through its volunteer listings. Local cleanup prevents litter entering waterways; it is an indirect contribution to reducing ocean debris, not a local hawksbill rescue activity.",
+                sources: ["noaa-hawksbill", "allegheny-cleanways"]
+            },
+            {
+                text: "Share NOAA’s hawksbill information with a Pittsburgh school or community group, including the risks from marine debris and the shell trade. These are actions residents can take and explain from home, even though hawksbills do not live in Pittsburgh’s rivers.",
+                sources: ["noaa-hawksbill"]
+            }
+        ],
         population: null,
         sources: [
             {
@@ -151,6 +192,13 @@ const ANIMALS = [
                 publisher: "IUCN Red List of Threatened Species",
                 url: "https://www.iucnredlist.org/search?query=Eretmochelys%20imbricata",
                 accessed: "2026-11-02"
+            },
+            {
+                id: "allegheny-cleanways",
+                title: "Volunteer and cleanup programs",
+                publisher: "Allegheny CleanWays",
+                url: "https://www.alleghenycleanways.org/",
+                accessed: "2026-11-06"
             }
         ]
     },
@@ -178,18 +226,36 @@ const ANIMALS = [
         },
         habitat: {
             text: "Primary tropical forest, mostly below 1,500 metres above sea level. Orangutan density declines with altitude, and few if any breeding populations live higher up.",
-            sources: ["apes-atlas-orangutan"]
+            sources: ["apes-atlas-orangutan", "adw-orangutan"]
         },
         range: {
             text: "Endemic to Sumatra, Indonesia, mainly in the north of the island. The Leuser Ecosystem holds about 95% of wild Sumatran orangutans. The species also occurs in protected areas such as Bukit Tigapuluh National Park.",
             sources: ["apes-atlas-orangutan"]
         },
         threats: [
-            { text: "Habitat loss and fragmentation from oil-palm plantations and logging", sources: ["apes-atlas-orangutan"] },
-            { text: "New roads that split up forests and give poachers access", sources: ["apes-atlas-orangutan"] },
-            { text: "Illegal pet trade and deliberate killing", sources: ["apes-atlas-orangutan"] },
-            { text: "Conflict with people, such as crop raiding", sources: ["apes-atlas-orangutan"] },
+            { text: "Habitat loss and fragmentation from oil-palm plantations and logging", sources: ["apes-atlas-orangutan", "sos-challenges", "adw-orangutan"] },
+            { text: "New roads that split up forests and give poachers access", sources: ["apes-atlas-orangutan", "sos-challenges"] },
+            { text: "Illegal pet trade and deliberate killing", sources: ["apes-atlas-orangutan", "sos-challenges", "adw-orangutan"] },
+            { text: "Conflict with people, such as crop raiding", sources: ["apes-atlas-orangutan", "sos-challenges"] },
             { text: "Land-use planning that opens habitat to plantations, timber, and mining", sources: ["apes-atlas-orangutan"] }
+        ],
+        ecologicalImportance: {
+            text: "Sumatran orangutans disperse seeds as they travel through the forest eating fruit. This helps maintain the diversity of rainforest trees and other woody plants. Protecting their forest habitat also shelters the many other species that share it.",
+            sources: ["adw-orangutan"]
+        },
+        protectionActions: [
+            {
+                text: "When buying groceries, cosmetics, or household products in Pittsburgh or online, look for RSPO-certified sustainable palm oil and check manufacturers’ sourcing policies. Use the Palm Oil Scan app recommended by the Sumatran Orangutan Society (SOS). SOS recommends sustainable, deforestation-free sourcing rather than a blanket palm-oil boycott.",
+                sources: ["sos-palm-oil"]
+            },
+            {
+                text: "Email brands or ask Pittsburgh retailers to stock products with certified sustainable palm oil and publish deforestation-free sourcing commitments. Share what you learn with a school or neighborhood group to help others make informed purchases.",
+                sources: ["sos-palm-oil"]
+            },
+            {
+                text: "Donate online or hold a Pittsburgh community fundraiser for SOS’s work with partners in Sumatra. Its work includes protecting and reconnecting forest habitat, restoring degraded forest, and supporting forest-edge communities; participation does not require overseas travel.",
+                sources: ["sos-palm-oil"]
+            }
         ],
         population: {
             text: "About 13,846 individuals were estimated in 2016 (Wich et al. 2016). This was higher than an earlier estimate of about 6,600 because of better survey methods, not population growth. The IUCN assessment (Singleton et al. 2023) reports that overall numbers continue to decline.",
@@ -218,6 +284,27 @@ const ANIMALS = [
                 publisher: "IUCN Red List of Threatened Species",
                 url: "https://www.iucnredlist.org/search?query=Pongo%20abelii",
                 accessed: "2026-11-02"
+            },
+            {
+                id: "adw-orangutan",
+                title: "Pongo abelii — Sumatran orangutan",
+                publisher: "Animal Diversity Web, University of Michigan Museum of Zoology",
+                url: "https://animaldiversity.org/accounts/Pongo_abelii/",
+                accessed: "2026-11-06"
+            },
+            {
+                id: "sos-palm-oil",
+                title: "About Palm Oil: The Problem, The Impact & The Solution",
+                publisher: "Sumatran Orangutan Society",
+                url: "https://www.orangutans-sos.org/learn/palm-oil/",
+                accessed: "2026-11-06"
+            },
+            {
+                id: "sos-challenges",
+                title: "Conservation Challenges",
+                publisher: "Sumatran Orangutan Society",
+                url: "https://www.orangutans-sos.org/learn/conservation-challenges/",
+                accessed: "2026-11-06"
             }
         ]
     }
