@@ -6,6 +6,14 @@
     <title>Wildlife Guardian | Home</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
+    <script src="animal-data.js" defer></script>
+    <script src="animal-cards.js" defer></script>
+    <script src="home-animals.js" defer></script>
+
+
+    <script src="organization-data.js" defer></script>
+    <script src="organization-cards.js" defer></script>
+
 </head>
 
 <body>
@@ -58,58 +66,79 @@
             <div class="hero-content">
                 <h1>Protect Endangered Wildlife</h1>
                 <p>
-                    Discover threatened species, understand
-                    the threats they face, and learn how to help.
+                    Explore threatened species, discover their habitats and challenges, and find meaningful ways to support wildlife conservation.
                 </p>
-                <a class="button" href="#animals">
+                <a class="button" href="animals.html">
                     Explore Animals →
                 </a>
             </div>
         </section>
 
-        <!-- Featured Animals: each card links to animal.html?id=<species-id> -->
-        <section class="animals" id="animals">
-            <h2>Featured Endangered Animals</h2>
+        <!-- Featured profiles use the same shared data as the directory. -->
+        <section class="animals home-featured" id="animals">
+            <div class="home-section-heading">
+                <div>
+                    <p class="home-eyebrow">DISCOVER THE WILD</p>
+                    <h2>Meet the Animals</h2>
+                    <p>Start with six remarkable species, then explore every conservation profile in the directory.</p>
+                </div>
+                <a class="home-text-link" href="animals.html">View all animals →</a>
+            </div>
+            <div class="animal-grid home-featured-grid" data-home-animals>
+                <noscript>
+                    <p>Please enable JavaScript to view the featured animals, or <a href="animals.html">browse the animal directory</a>.</p>
+                </noscript>
+            </div>
+        </section>
 
-            <div class="animal-grid">
-                <a class="animal-card" href="animal.html?id=amur-leopard">
-                    <img src="images/amur-leopard.jpg"
-                         alt="Amur leopard with a pale spotted coat standing on mossy rocks in front of bamboo, mouth open">
-                    <div class="card-content">
-                        <h3>Amur Leopard</h3>
-                        <span class="status">Critically Endangered</span>
-                    </div>
-                </a>
+        <section class="home-action">
+            <div>
+                <p class="home-eyebrow">MAKE A DIFFERENCE</p>
+                <h2>Small actions can support wildlife protection</h2>
+                <p>Explore the threats animals face, learn about conservation solutions, and discover opportunities to get involved from Pittsburgh.</p>
+            </div>
+            <a class="button" href="animals.html">Explore conservation profiles →</a>
+        </section>
 
-                <a class="animal-card" href="animal.html?id=sumatran-orangutan">
-                    <img src="images/sumatran-orangutan.jpg"
-                         alt="Close-up of a Sumatran orangutan with long reddish-brown hair and a pale beard, arms raised and holding a rope">
-                    <div class="card-content">
-                        <h3>Sumatran Orangutan</h3>
-                        <span class="status">Critically Endangered</span>
-                    </div>
-                </a>
+        <!-- Help Animals Near You -->
+        <section class="local-help" id="local-help">
+            <h2>Help Animals Near You</h2>
 
-                <a class="animal-card" href="animal.html?id=hawksbill-sea-turtle">
-                    <img src="images/hawksbill-sea-turtle.jpg"
-                         alt="Hawksbill sea turtle with a narrow, pointed beak swimming in blue water above a coral reef">
-                    <div class="card-content">
-                        <h3>Hawksbill Sea Turtle</h3>
-                        <span class="status">Critically Endangered</span>
-                    </div>
-                </a>
+            <p>
+                Discover wildlife rescue centers, animal shelters,
+                and conservation organizations in Pittsburgh.
+            </p>
+
+            <div class="local-help-controls">
+                <div class="organization-filter">
+                    <label for="organization-search">Search Organizations</label>
+                    <input
+                        type="text"
+                        id="organization-search"
+                        placeholder="Search by name or service..."
+                    >
+                </div>
+
+                <div class="organization-filter">
+                    <label for="organization-category">Category</label>
+                    <select id="organization-category">
+                        <option value="all">All Categories</option>
+                        <option value="wildlife_rehabilitation">Wildlife Rehabilitation</option>
+                        <option value="animal_shelter">Animal Shelters</option>
+                        <option value="municipal_animal_services">Animal Services</option>
+                        <option value="conservation_education">Conservation Education</option>
+                        <option value="habitat_conservation">Habitat Conservation</option>
+                    </select>
+                </div>
+
+                <button type="button" id="reset-organization-filters">
+                    Reset Filters
+                </button>
             </div>
 
-            <!-- Required by the photos' Creative Commons licences; keep in sync with animal-data.js -->
-            <p class="photo-credits">
-                Photos:
-                <a href="https://commons.wikimedia.org/wiki/File:Panthera_pardus_orientalis_Colchester_Zoo_(1).jpg">William Warby</a>
-                (<a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>);
-                <a href="https://commons.wikimedia.org/wiki/File:2025-05-11_Zoo_Dresden_STP_3563-2.jpg">Steffen Prößdorf</a>
-                (<a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>);
-                <a href="https://commons.wikimedia.org/wiki/File:Tortuga_carey_(Eretmochelys_imbricata),_parque_nacional_Ras_Muhammad,_Egipto,_2022-03-28,_DD_56.jpg">Diego Delso</a>
-                (<a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>).
-            </p>
+            <div class="organization-grid" id="organization-grid">
+                <!-- Organization cards will appear here -->
+            </div>
         </section>
 
         <!-- Mission: target of the "About Us" nav link -->
