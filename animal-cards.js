@@ -49,13 +49,19 @@ function createAnimalCardMedia(animal) {
 
     const img = document.createElement("img");
 
-    img.src = image.src;
+    img.src = image.cardSrc || image.src;
+    if (image.cardPosition) {
+        img.style.objectPosition = image.cardPosition;
+    }
     img.alt = altText;
     img.loading = "lazy";
 
     // Swap in the placeholder if the file is missing or fails to load.
     img.addEventListener("error", function () {
+        const card = img.closest(".animal-card");
         img.replaceWith(createPlaceholder());
+        const credit = card && card.querySelector(".animal-card-credit");
+        if (credit) credit.remove();
     });
 
     return img;
@@ -63,7 +69,7 @@ function createAnimalCardMedia(animal) {
 
 // "Photo: <credit> (<license>)" with links. Required by CC licences.
 function createAnimalCardCredit(image) {
-    const credit = createCardElement("p", "animal-card-credit", "Photo: ");
+    const credit = createCardElement("p", "animal-card-credit", image.mediaType === "illustration" ? "Illustration: " : image.mediaType === "historical" ? "Historical photo: " : "Photo: ");
 
     function appendLinkOrText(text, url) {
         if (url) {
@@ -145,8 +151,71 @@ function renderAnimalCards(animals, container) {
 
 document.addEventListener("DOMContentLoaded", function () {
     const container = document.querySelector("[data-animal-cards]");
+    const searchInput = document.getElementById("animal-search-input");
+    const clearButton = document.getElementById("clear-animal-search");
+    const statusFilter = document.getElementById("status-filter");
+    const habitatFilter = document.getElementById("habitat-filter");
+    const resetButton = document.getElementById("reset-filters");
 
     if (container && typeof ANIMALS !== "undefined") {
-        renderAnimalCards(ANIMALS, container);
+
+        function updateAnimalCards() {
+            const keyword = searchInput ? searchInput.value.toLowerCase().trim() : "";
+            const selectedStatus = statusFilter ? statusFilter.value : "all";
+            const selectedHabitat = habitatFilter ? habitatFilter.value : "all";
+
+            const filteredAnimals = ANIMALS.filter(function (animal) {
+                const matchesName = animal.commonName.toLowerCase().includes(keyword);
+
+                const matchesStatus = selectedStatus === "all" ||
+                    (animal.status && animal.status.label === selectedStatus);
+
+                const matchesHabitat = selectedHabitat === "all" ||
+                    animal.habitat.filters?.includes(selectedHabitat);
+
+                return matchesName && matchesStatus && matchesHabitat;
+            });
+
+            renderAnimalCards(filteredAnimals, container);
+        }
+
+        updateAnimalCards();
+
+        if (searchInput) {
+            searchInput.addEventListener("input", updateAnimalCards);
+        }
+
+        if (statusFilter) {
+            statusFilter.addEventListener("change", updateAnimalCards);
+        }
+
+        if (habitatFilter) {
+            habitatFilter.addEventListener("change", updateAnimalCards);
+        }
+
+        if (clearButton && searchInput) {
+            clearButton.addEventListener("click", function () {
+                searchInput.value = "";
+                updateAnimalCards();
+            });
+        }
+
+        if (resetButton) {
+            resetButton.addEventListener("click", function () {
+                if (searchInput) {
+                    searchInput.value = "";
+                }
+
+                if (statusFilter) {
+                    statusFilter.value = "all";
+                }
+
+                if (habitatFilter) {
+                    habitatFilter.value = "all";
+                }
+
+                updateAnimalCards();
+            });
+        }
     }
 });
